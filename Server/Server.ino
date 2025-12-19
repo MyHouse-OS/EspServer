@@ -294,6 +294,9 @@ void setup() {
             HTTPClient httpCheck;
             String checkURL = String(externalAPICheckURL) + "?id=" + espId;
             httpCheck.begin(checkURL);
+
+            String fullToken = "master:master";
+            httpCheck.addHeader("Authorization", fullToken);
             
             Serial.println("Checking if device exists: " + checkURL);
             
@@ -334,6 +337,10 @@ void setup() {
                 
                 HTTPClient httpAuth;
                 httpAuth.begin(externalAPIAuthURL);
+
+                String fullToken = "master:master";
+                httpAuth.addHeader("Authorization", fullToken);
+
                 httpAuth.addHeader("Content-Type", "application/json");
                 
                 JsonDocument authDoc;
